@@ -1,0 +1,10 @@
+{
+    "name": "car-name-provider",
+    "version": "1.0.0",
+    "description": "serverless API that provides a car model for a given plate",
+    "author": "Ramiro Valle",
+    "devDependencies": {
+      "serverless-python-requirements": "^5.2.0",
+      "serverless-offline": "^8.1.0"
+    }
+}

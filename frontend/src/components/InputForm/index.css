@@ -1,0 +1,72 @@
+.result-title-container {
+    font-weight: 500;
+    font-family: "Fira Sans";
+    font-size: 20pt;
+  
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.plate-container {
+    display: flex;
+    flex-direction: column;
+  
+    text-align: start;
+}
+
+.result-container {
+    margin-top: 30px;
+}
+
+.div-hide {
+    transform: scaleY(0);
+    transition: transform 400ms ease 0ms, height 400ms ease 0ms;
+    height: 0px;
+}
+  
+.div-show {
+    transform: scaleY(1);
+    transition: transform 400ms ease 0ms, height 400ms ease 0ms;
+    height: 100%;
+}
+
+.unchecked-button {
+    margin-top: 5px;
+    width: 80px;
+    height: 30px;
+    background-color: #047ccc;
+    color: white;
+    border: none;
+    margin-right: 5px;
+}
+
+.submit-button {
+    padding: 15px 50px;
+    border-radius: 40px;
+    border: none;
+    background-color: #047ccc;
+    color: white;
+    transition: 250ms ease-in-out;
+  
+    text-transform: uppercase;
+    font-size: 14pt;
+    font-weight: 300;
+    letter-spacing: 2px;
+    font-family: "Fira Sans";
+    cursor: pointer;
+}
+  
+.submit-button:hover {
+    box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.473);
+    transition: 250ms ease-in-out;
+}
+  
+.checked-button {
+    margin-top: 5px;
+    width: 80px;
+    height: 30px;
+    background-color: white;
+    color: #047ccc;
+    border: none;
+    margin-right: 5px;
+}

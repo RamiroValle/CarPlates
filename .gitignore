@@ -1,0 +1,11 @@
+*.idea
+*.iml
+*.project
+*.settings
+*.jar
+*.zip
+*.gradle
+*.vscode
+
+
+/*/__pycache__

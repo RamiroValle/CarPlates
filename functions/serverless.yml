@@ -1,0 +1,22 @@
+service: carNameProvider
+
+plugins:
+  - serverless-python-requirements
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: python3.9
+  profile: ${self:custom.aws_profile}
+
+functions:
+  api:
+    handler: app.handler
+    events:
+      - http:
+          path: /{plate}
+          method: get
+
+custom:
+  pythonRequirements:
+    dockerizePip: true

@@ -1,0 +1,79 @@
+version: "3"
+
+services:
+  back:
+    build: ./backend
+    volumes:
+      - backend:/backend
+      - ./backend:/backend
+    ports:
+      - 80:80
+    links:
+      - "serverless"
+  front:
+    build: ./frontend
+    ports:
+      - "4000:4000"
+    command: npm run start
+    volumes:
+      - frontend:/frontend
+      - ./frontend:/frontend
+  serverless:
+    build: ./functions
+    command: sls offline --host 0.0.0.0 --noAuth
+    ports:
+      - "3000:3000"
+      - "3002:3002"
+    volumes:
+      - function:/serverless/app
+      - ./functions:/serverless/app
+    restart: always
+    depends_on:
+      - redis
+    links:
+      - 'db'
+      - 'redis'
+  redis:
+    image: redis:latest
+    ports:
+      - 6379:6379
+    depends_on:
+      - script
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    restart: always
+    volumes:
+      - redis:/serverless/db
+  script:
+    build: ./functions/script
+    command: python3 db_script.py example.json
+    ports:
+      - 8080:8080
+    restart: on-failure
+    volumes:
+      - script:/serverless/dbscript
+      - ./functions/script:/serverless/dbscript
+    depends_on:
+      - db
+    links:
+      - 'db'
+  db:
+    image: mysql/mysql-server:latest
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: "mysql"
+      MYSQL_USER: "admin"
+      MYSQL_PASSWORD: "admin"
+      MYSQL_ROOT_PASSWORD: "root"
+    restart: always
+    volumes:
+      - db:/serverless/mysql
+  
+volumes:
+  backend:
+  frontend:
+  db:
+  script:
+  redis:
+  function:
