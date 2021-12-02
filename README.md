@@ -1,6 +1,6 @@
 # CarPlates
 
-    Application made in React.js and FASTAPI to search for a car model from a license plate using a serverless lamda function that communicates with a database in MySQL and a Redis cache.
+Application made in React.js and FASTAPI to search for a car model from a license plate using a serverless lamda function that communicates with a database in MySQL and a Redis cache.
 
 ## Requirements
 
