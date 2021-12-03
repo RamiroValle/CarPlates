@@ -5,7 +5,7 @@ services:
     build: ./backend
     volumes:
       - backend:/backend
-      - ./backend:/backend
+      - ./backend:/app/backend
     ports:
       - 80:80
     links:
@@ -17,7 +17,7 @@ services:
     command: npm run start
     volumes:
       - frontend:/frontend
-      - ./frontend:/frontend
+      - ./frontend:/app/frontend
   serverless:
     build: ./functions
     command: sls offline --host 0.0.0.0 --noAuth
@@ -26,7 +26,7 @@ services:
       - "3002:3002"
     volumes:
       - function:/serverless/app
-      - ./functions:/serverless/app
+      - ./functions:/app/serverless/app
     restart: always
     depends_on:
       - redis
@@ -52,7 +52,7 @@ services:
     restart: on-failure
     volumes:
       - script:/serverless/dbscript
-      - ./functions/script:/serverless/dbscript
+      - ./functions/script:/app/serverless/dbscript
     depends_on:
       - db
     links:
